@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
 
-function Task({
-  title,
-  description,
-  done,
-  onToggle,
-  onDelete,
-  onRename,
-  onRenameDesc,
-}) {
+function Task({title, description, done, onToggle, onDelete, onRename,onRenameDesc}) {
   const [editMode, setEditMode] = useState(false);
   const [editModeDesc, setEditModeDesc] = useState(false);
 
   return (
-    <div>
+    <div className="mb-4 w-auto">
       <div className='flex'>
         <input
           type='checkbox'
@@ -21,17 +13,21 @@ function Task({
           onClick={() => onToggle(!done)}
         />
       </div>
+      {/* if edit mode is false, display title */}
       {!editMode && (
         <div onClick={setEditMode(prev => !prev)}>
           <h1>Title: {title}</h1>
         </div>
       )}
+      {/* if edit mode is true, display title */}
       {editMode && (
-        <form>
+        <form className='flex'>
+          <h1 className="mr-2">Title: </h1>
           <input
             type='text'
             value={title}
-            onChange={event => onRename(event.target.value)}></input>
+            onChange={event => onRename(event.target.value)}
+          />
         </form>
       )}
       {!editModeDesc && (
@@ -40,14 +36,15 @@ function Task({
         </div>
       )}
       {editModeDesc && (
-        <form>
+        <form className='flex'>
+          <h1 className="mr-2">Description: </h1>
           <input
             type='text'
             value={description}
-            onChange={event => onRenameDesc(event.target.value)}></input>
+            onChange={event => onRenameDesc(event.target.value)}
+          />
         </form>
       )}
-      {/* <h1>Description: {description}</h1> */}
       <button className='border border-slate-800' onClick={onDelete}>
         Delete
       </button>

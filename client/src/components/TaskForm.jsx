@@ -19,23 +19,23 @@ function TaskForm() {
   };
 
   return (
-    <div>
-      <h1 className='flex justify-center mt-64'>To Do List</h1>
+    <div className='pt-4 w-80'>
+      <h1 className='flex justify-center mt-16'>Kenny's To Do List</h1>
       <form>
         <div className='flex flex-col'>
           <input
             type='text'
             value={taskTitle}
             onChange={event => setTaskTitle(event.target.value)}
-            className='border border-slate-800'
-            placeholder='Enter task name here...'
+            className='focus:outline-none py-2 bg-slate-100'
+            placeholder='add a new task'
           />
           <textarea
             type='text'
             value={taskDescription}
             onChange={event => setTaskDescription(event.target.value)}
-            className='border border-slate-800 w-96'
-            placeholder='Enter task description here...'
+            className='focus:outline-none py-2 bg-slate-100'
+            placeholder='add a note'
           />
         </div>
         <div className='flex flex-col'>

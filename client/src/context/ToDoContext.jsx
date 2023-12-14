@@ -1,24 +1,20 @@
 import React, { useState, useEffect, createContext } from 'react';
 
-//Create Context Instance w/ default params
 export const TaskContext = createContext({
   tasks: [],
   onAdd: () => {},
   updateTaskDone: () => {},
   deleteTask: () => {},
   renameTask: () => {},
+  renameTaskDesc: () => {},
 });
 
-//Provider Component
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     try {
-      //grab corresponding value for tasks key and assign to variable storedTasks
       const storedTasks = JSON.parse(localStorage.getItem('tasks'));
-      //if value is not null or empty, set tasks vasriable to storedTasks, else assign to an empty array
-      //without else condition, we will get errors in console stating tasks cannot be null
       if (Array.isArray(storedTasks)) {
         setTasks(storedTasks);
       } else {
@@ -29,57 +25,50 @@ export const TaskProvider = ({ children }) => {
     }
   }, []);
 
-  //handles changes to tasks. if there is a change to tasks state, set local storage to newly updated tasks
   useEffect(() => {
-    //if there are no tasks to be stored, return out of function
     if (tasks.length === 0) return;
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const onAdd = (title, description) => {
-    try {
-      setTasks(prev => {
-        const newTask = {
-          id: Date.now(),
-          title: title,
-          description: description,
-          done: false,
-        };
-        return [...prev, newTask];
-      });
-    } catch (err) {
-      console.log('error setting task', err);
-    }
-  };
-
-  const updateTaskDone = (index, done) => {
+  // reusable
+  const updateTask = (id, updates) => {
     setTasks(prev => {
       const newTasks = [...prev];
-      newTasks[index].done = done;
+      const taskIndex = newTasks.findIndex(task => task.id === id);
+      newTasks[taskIndex] = { ...newTasks[taskIndex], ...updates };
       return newTasks;
     });
   };
 
-  const deleteTask = indexToDelete => {
+  const onAdd = (title, description) => {
+    setTasks(prev => [
+      { id: Date.now(), title, description, done: false },
+      ...prev,
+    ]);
+  };
+
+  const updateTaskDone = (id, done) => {
+    updateTask(id, { done });
+  };
+
+  const deleteTask = (idToDelete) => {
     setTasks(prev => {
-      return prev.filter((taskObj, index) => index !== indexToDelete);
+      const updatedTasks = prev.filter(task => task.id !== idToDelete);
+      if (updatedTasks.length === 0) {
+        localStorage.removeItem('tasks');
+      } else {
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      }
+      return updatedTasks;
     });
   };
 
-  const renameTask = (index, newTitle) => {
-    setTasks(prev => {
-      const newTasks = [...prev];
-      newTasks[index].title = newTitle;
-      return [...prev];
-    });
+  const renameTask = (id, newTitle) => {
+    updateTask(id, { title: newTitle });
   };
 
-  const renameTaskDesc = (index, newDesc) => {
-    setTasks(prev => {
-      const newTasks = [...prev];
-      newTasks[index].description = newDesc;
-      return [...prev];
-    });
+  const renameTaskDesc = (id, newDesc) => {
+    updateTask(id, { description: newDesc });
   };
 
   return (

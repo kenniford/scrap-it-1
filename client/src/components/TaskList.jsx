@@ -25,7 +25,7 @@ function TaskList() {
   const filteredTasks = filterTasks();
 
   return (
-    <div>
+    <div className='w-80'>
       <div>
         <select
           name='filter'
@@ -38,14 +38,14 @@ function TaskList() {
         </select>
       </div>
       <div>
-        {filteredTasks.map((item, index) => (
+        {filteredTasks.map(item => (
           <Task
             key={item.id}
             {...item}
-            onRename={newTitle => renameTask(index, newTitle)}
-            onRenameDesc={newDesc => renameTaskDesc(index, newDesc)}
-            onToggle={done => updateTaskDone(index, done)}
-            onDelete={() => deleteTask(index)}
+            onRename={newTitle => renameTask(item.id, newTitle)}
+            onRenameDesc={newDesc => renameTaskDesc(item.id, newDesc)}
+            onToggle={done => updateTaskDone(item.id, done)}
+            onDelete={() => deleteTask(item.id)}
           />
         ))}
       </div>
