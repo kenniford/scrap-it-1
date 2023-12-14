@@ -80,11 +80,18 @@ export const TaskProvider = ({ children }) => {
       newTasks[index].description = newDesc;
       return [...prev];
     });
-  }
+  };
 
   return (
     <TaskContext.Provider
-      value={{ tasks, onAdd, updateTaskDone, deleteTask, renameTask, renameTaskDesc }}>
+      value={{
+        tasks,
+        onAdd,
+        updateTaskDone,
+        deleteTask,
+        renameTask,
+        renameTaskDesc,
+      }}>
       {children}
     </TaskContext.Provider>
   );

@@ -44,6 +44,7 @@ function TaskForm() {
             className='px-4 border border-slate-800 bg-blue-300'>
             Add Task
           </button>
+
           <button onClick={clearList}>Clear list</button>
         </div>
       </form>
