@@ -26,7 +26,7 @@ function TaskList() {
 
   return (
     <div>
-      <div>
+      <div className="flex justify-center">
         <select
           name='filter'
           value={filter}
