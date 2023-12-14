@@ -5,10 +5,8 @@ import './App.css';
 function App() {
   return (
     <div className='flex flex-col items-center bg-slate-100 min-h-screen font-mono'>
-      <div>
-        <TaskForm />
-        <TaskList />
-      </div>
+      <TaskForm />
+      <TaskList />
     </div>
   );
 }

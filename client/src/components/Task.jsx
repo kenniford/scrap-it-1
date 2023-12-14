@@ -13,10 +13,7 @@ function Task({
   const [editModeDesc, setEditModeDesc] = useState(false);
 
   return (
-    <div
-      className={`mb-4 w-auto ${
-        done ? 'line-through' : ''
-      } w-96 flex items-center`}>
+    <div className={`mb-4 w-auto ${done ? 'line-through' : ''} w-96 flex items-center`}>
       <div>
         <input
           type='checkbox'
@@ -25,12 +22,14 @@ function Task({
           className='h-4 w-4 flex'
         />
       </div>
-      <div className="">
+      <div className=''>
         {/* if edit mode is false, display title */}
         {!editMode && (
           <div onClick={setEditMode(prev => !prev)}>
             <h1
-              className={`${done ? 'text-gray-500 line-through' : 'text-black'} font-bold text-lg`}>
+              className={`${
+                done ? 'text-gray-500 line-through' : 'text-black'
+              } font-bold text-lg`}>
               {title}
             </h1>
           </div>
@@ -43,7 +42,7 @@ function Task({
               type='text'
               value={title}
               onChange={event => onRename(event.target.value)}
-              className='w-80 bg-slate-100 font-bold text-lg'
+              className='w-80 bg-slate-100 font-bold text-lg px-2 pt-2'
               placeholder='edit title'
             />
           </form>
@@ -63,16 +62,18 @@ function Task({
             {/* <h1 className="mr-2">Description: </h1> */}
             <textarea
               value={description}
-              onChange={(event) => onRenameDesc(event.target.value)}
+              onChange={event => onRenameDesc(event.target.value)}
               className='w-80 h-auto bg-slate-100 p-2 resize-none text-sm'
               placeholder='Add note'
             />
           </form>
         )}
       </div>
-      <div>
-        <button className='border border-slate-800 p-2 bg-red-500' onClick={onDelete}>
-          X
+      <div className='p-2'>
+        <button
+          className='border border-slate-800 p-2 bg-red-500 text-white rounded'
+          onClick={onDelete}>
+          Delete
         </button>
       </div>
     </div>

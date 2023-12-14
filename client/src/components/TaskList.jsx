@@ -25,7 +25,7 @@ function TaskList() {
   const filteredTasks = filterTasks();
 
   return (
-    <div className='w-80'>
+    <div>
       <div>
         <select
           name='filter'
