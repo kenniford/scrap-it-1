@@ -26,7 +26,7 @@ function TaskForm() {
 
   return (
     <div className='flex flex-col items-center py-4 bg-slate-100 w-96'>
-      <h1 className='text-xl font-bold mt-8 mb-4'>Kenny's To Do List</h1>
+      <h1 className='text-xl font-bold mt-8 mb-4'>KENNY'S TO DO LIST</h1>
       <form className='flex flex-col items-center w-full max-w-md'>
         <div className='flex flex-col w-full mb-4'>
           <input
@@ -52,14 +52,14 @@ function TaskForm() {
         <div className='flex flex-col w-full'>
           <button
             onClick={addTask}
-            className='px-4 py-2 mb-2 border border-slate-800 bg-blue-300 rounded-md'>
-            Add Task
+            className='px-4 py-2 mb-2 border border-slate-800 bg-blue-300 rounded-md hover:bg-blue-400'>
+            ADD TASK
           </button>
 
           <button
             onClick={clearList}
-            className='px-4 py-2 border border-slate-800 rounded-md text-gray-700 mb-4'>
-            Clear list
+            className='px-4 py-2 border border-slate-800 rounded-md text-gray-700 mb-4 hover:bg-red-200'>
+            CLEAR LIST
           </button>
         </div>
       </form>
