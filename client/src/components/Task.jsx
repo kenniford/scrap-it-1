@@ -42,7 +42,7 @@ function Task({
               type='text'
               value={title}
               onChange={event => onRename(event.target.value)}
-              className='w-80 bg-slate-100 font-bold text-lg px-2 pt-2'
+              className='w-72 bg-slate-100 font-bold text-lg px-2 pt-2'
               placeholder='edit title'
             />
           </form>
@@ -63,7 +63,7 @@ function Task({
             <textarea
               value={description}
               onChange={event => onRenameDesc(event.target.value)}
-              className='w-80 h-auto bg-slate-100 p-2 resize-none text-sm'
+              className='w-72 h-auto bg-slate-100 p-2 resize-none text-sm'
               placeholder='Add note'
             />
           </form>

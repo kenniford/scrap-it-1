@@ -9,7 +9,6 @@ function TaskForm() {
 
   const addTask = event => {
     event.preventDefault();
-    // add conditional to check if tasktitle or taskdescription are not empty
     if (!taskTitle) {
       setTaskTitleErr(true);
     } else {
