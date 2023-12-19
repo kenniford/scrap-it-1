@@ -59,7 +59,6 @@ function Task({
         )}
         {editModeDesc && (
           <form className='flex my-1'>
-            {/* <h1 className="mr-2">Description: </h1> */}
             <textarea
               value={description}
               onChange={event => onRenameDesc(event.target.value)}

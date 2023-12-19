@@ -30,7 +30,7 @@ export const TaskProvider = ({ children }) => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  // reusable
+  // reusable function
   const updateTask = (id, updates) => {
     setTasks(prev => {
       const newTasks = [...prev];
