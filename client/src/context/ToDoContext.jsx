@@ -47,10 +47,6 @@ export const TaskProvider = ({ children }) => {
     ]);
   };
 
-  const updateTaskDone = (id, done) => {
-    updateTask(id, { done });
-  };
-
   const deleteTask = (idToDelete) => {
     setTasks(prev => {
       const updatedTasks = prev.filter(task => task.id !== idToDelete);
@@ -61,6 +57,10 @@ export const TaskProvider = ({ children }) => {
       }
       return updatedTasks;
     });
+  };
+
+  const updateTaskDone = (id, done) => {
+    updateTask(id, { done });
   };
 
   const renameTask = (id, newTitle) => {
